@@ -49,6 +49,14 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="StructureMap, Version=4.2.0.402, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\structuremap.4.2.0.402\lib\net40\StructureMap.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="StructureMap.Net4, Version=4.2.0.402, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\structuremap.4.2.0.402\lib\net40\StructureMap.Net4.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -167,9 +175,16 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="App_Start\StructureMapConfig.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\ServiceTypesController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ServiceProvidersController.cs" />
+    <Compile Include="Factories\DIControllerFactory.cs" />
+    <Compile Include="Factories\StructureMapDependencyResolver.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -188,6 +203,8 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\ServiceTypes\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -234,9 +251,22 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\ServiceProviders\Calendar.cshtml" />
+    <Content Include="Views\Customers\Services.cshtml" />
+    <Content Include="Views\Customers\Providers.cshtml" />
+    <Content Include="Views\Customers\ProviderDetails.cshtml" />
+    <Content Include="Views\Customers\BookAppointment.cshtml" />
+    <Content Include="Views\Customers\Calendar.cshtml" />
+    <Content Include="Views\ServiceProviders\AppointmentDetails.cshtml" />
+    <Content Include="Views\ServiceProviders\ManageServices.cshtml" />
+    <Content Include="Views\ServiceProviders\AvailableTime.cshtml" />
+    <Content Include="Views\Shared\_CustomLayoutPage.cshtml" />
+    <Content Include="Views\ServiceProviders\View.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Areas\Admin\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -245,6 +275,24 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AppointmentManager.Models\AppointmentManager.Models.csproj">
+      <Project>{c76a5202-ce13-4e42-92dd-c9d75a85c37a}</Project>
+      <Name>AppointmentManager.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AppointmentManager.Repository.EntityFramework\AppointmentManager.Repository.EntityFramework.csproj">
+      <Project>{a8d30fef-42b8-4192-b71f-650c4a917786}</Project>
+      <Name>AppointmentManager.Repository.EntityFramework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AppointmentManager.Repository\AppointmentManager.Repository.csproj">
+      <Project>{32b0f1ee-daaa-4327-927e-bee6d4a82b12}</Project>
+      <Name>AppointmentManager.Repository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AppointmentManager.Services\AppointmentManager.Services.csproj">
+      <Project>{d8aa52d2-53ee-4597-999f-53a81ff16832}</Project>
+      <Name>AppointmentManager.Services</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

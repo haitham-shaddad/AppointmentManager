@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AppointmentManager.Web.App_Start;
+using AppointmentManager.Web.Factories;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,6 +14,11 @@ namespace AppointmentManager.Web
     {
         protected void Application_Start()
         {
+            var container = StructureMapConfig.Config();
+
+            //ControllerBuilder.Current.SetControllerFactory(typeof(DIControllerFactory));
+            DependencyResolver.SetResolver(new StructureMapDependencyResolver(container));
+
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
